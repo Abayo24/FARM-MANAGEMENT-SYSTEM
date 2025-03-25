@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import CropsPage from "./pages/CropsPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
+import CreateResourcePage from "./pages/CreateResourcePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/activities" element={<ActivitiesPage />} />
           <Route path="/create" element={<CreatePage />} />
+          <Route path="/createResource" element={<CreateResourcePage />} />
         </Routes>
       </Box>
   );

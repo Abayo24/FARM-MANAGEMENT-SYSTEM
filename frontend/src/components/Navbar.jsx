@@ -1,13 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Flex, Text, HStack, Button, useColorMode } from '@chakra-ui/react'
-
-import { PlusSquareIcon } from '@chakra-ui/icons'
-import { IoMoon } from 'react-icons/io5'
-import { LuSun } from 'react-icons/lu'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Container, Flex, Text, HStack, Button, useColorMode } from '@chakra-ui/react';
+import { PlusSquareIcon } from '@chakra-ui/icons';
+import { IoMoon } from 'react-icons/io5';
+import { LuSun } from 'react-icons/lu';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const location = useLocation(); // Get the current route
+
+  // Determine the create page based on the current route
+  const createPageLink = location.pathname.includes('/resources') ? '/createResource' : '/create';
 
   return (
     <Container maxW={"1140px"} px={4}>
@@ -21,14 +24,14 @@ const Navbar = () => {
         }}
       >
         <Text
-          fontSize={{base: "22", sm: "28"}}
+          fontSize={{ base: "22", sm: "28" }}
           fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
           bgGradient={"linear(to-r, blue.400, green.500)"}
           bgClip={"text"}
         >
-          <Link to={"/"}>Farm Management🌾</Link>
+          <Link to={"/"}>Farm Management 🌾</Link>
         </Text>
 
         <HStack spacing={2} alignItems={"center"}>
@@ -46,25 +49,19 @@ const Navbar = () => {
             <Button variant="ghost" fontWeight="bold">
               Resources
             </Button>
-            <Link to={"/activities"}>
-            <Button variant="ghost" fontWeight="bold">
-              Activity Tracker
-            </Button>
           </Link>
-          </Link>
-          <Link to={"/create"}>
+          <Link to={createPageLink}>
             <Button>
               <PlusSquareIcon fontSize={20} />
             </Button>
           </Link>
           <Button onClick={toggleColorMode}>
-              {colorMode === "light" ? <IoMoon /> : <LuSun size="20" />}
-            </Button>
+            {colorMode === "light" ? <IoMoon /> : <LuSun size="20" />}
+          </Button>
         </HStack>
-
       </Flex>
     </Container>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
