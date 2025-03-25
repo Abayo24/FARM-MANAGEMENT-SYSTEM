@@ -10,7 +10,12 @@ const Navbar = () => {
   const location = useLocation(); // Get the current route
 
   // Determine the create page based on the current route
-  const createPageLink = location.pathname.includes('/resources') ? '/createResource' : '/create';
+  let createPageLink = '/create';
+  if (location.pathname.includes('/resources')) {
+    createPageLink = '/createResource';
+  } else if (location.pathname.includes('/activities')) {
+    createPageLink = '/createActivity';
+  }
 
   return (
     <Container maxW={"1140px"} px={4}>
@@ -48,6 +53,11 @@ const Navbar = () => {
           <Link to={"/resources"}>
             <Button variant="ghost" fontWeight="bold">
               Resources
+            </Button>
+          </Link>
+          <Link to={"/activities"}>
+            <Button variant="ghost" fontWeight="bold">
+              Activity Tracker
             </Button>
           </Link>
           <Link to={createPageLink}>
